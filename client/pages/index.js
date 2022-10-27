@@ -10,7 +10,7 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const { data, loading, error } = useQuery(GET_FIRST_ARTICLES);
   const [getPageArticles, {}] = useLazyQuery(GET_PAGE_ARTICLES, {
-    variables: { page: articles.length / 30 },
+    variables: { page: articles.length / 30 + 1 },
   });
 
   useEffect(() => {
