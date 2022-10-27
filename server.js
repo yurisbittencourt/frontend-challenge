@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "out", "index.html"));
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -15,7 +15,6 @@ export default function Home() {
 
   useEffect(() => {
     data && setArticles(data.firstPageArticles);
-    getPageArticles().then((res) => console.log(res));
   }, [data]);
 
   return (
