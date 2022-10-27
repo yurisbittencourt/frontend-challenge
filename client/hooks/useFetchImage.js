@@ -10,7 +10,7 @@ export const useFetchImage = (url) => {
       .then((res) => {
         setImgUrl(res.data.url);
       })
-      .catch(() => setImgUrl("/assets/no_image_placeholder.png"));
+      .catch(() => setImgUrl("assets/no_image_placeholder.png"));
   }, []);
   return { imgUrl };
 };
