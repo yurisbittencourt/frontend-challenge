@@ -1,8 +1,8 @@
 # frontend-challenge
 
 To start the development server run: npm run dev
-npm version: 8.13.2
-node version: v16.13.2
+- npm version: 8.13.2
+- node version: v16.13.2
 
 # Features
 - Website made to look like the ForHims blog
