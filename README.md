@@ -1,6 +1,6 @@
 # frontend-challenge
 
-To start the development server run: npm run dev
+To start the development server run "npm run dev" after installing dependencies
 - npm version: 8.13.2
 - node version: v16.13.2
 
