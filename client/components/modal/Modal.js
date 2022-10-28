@@ -34,7 +34,7 @@ export default function Modal({ setIsOpen, setNewArticle }) {
         />
         <Input
           placeholder="Description"
-          value={description}
+          value={text}
           onChange={(e) => setText(e.target.value)}
           required
         />
