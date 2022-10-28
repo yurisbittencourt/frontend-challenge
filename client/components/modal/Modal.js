@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function Modal({ setIsOpen, setNewArticle }) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [text, setText] = useState("");
   const [url, setUrl] = useState("");
   const [imgUrl, setImgUrl] = useState("");
 
@@ -35,7 +35,7 @@ export default function Modal({ setIsOpen, setNewArticle }) {
         <Input
           placeholder="Description"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           required
         />
         <Input
