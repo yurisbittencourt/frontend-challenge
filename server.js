@@ -25,13 +25,13 @@ app.get("/api/scrapper", (req, res) => {
   const options = { url: req.query.url };
   ogs(options)
     .then((data) => {
-      const { error, result } = data;
+      const { result } = data;
       const imgUrl = Array.isArray(result.ogImage)
         ? result.ogImage[0].url
         : result.ogImage.url;
       return res.json({ url: imgUrl });
     })
     .catch(() => {
-      res.status(404).send("Something broke!");
+      res.status(500).send("Something broke!");
     });
 });

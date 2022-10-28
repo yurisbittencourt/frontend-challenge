@@ -9,12 +9,7 @@ import { Waypoint } from "react-waypoint";
 export default function Home() {
   const [articles, setArticles] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [newArticle, setNewArticle] = useState({
-    title: "",
-    description: "",
-    url: "",
-    imgUrl: "",
-  });
+  const [newArticle, setNewArticle] = useState();
   const { data, loading, error } = useQuery(GET_FIRST_ARTICLES);
   const [getPageArticles, {}] = useLazyQuery(GET_PAGE_ARTICLES, {
     variables: { page: articles.length / 30 + 1 },
@@ -25,7 +20,7 @@ export default function Home() {
   }, [data]);
 
   useEffect(() => {
-    setArticles((articles) => [newArticle, ...articles]);
+    newArticle && setArticles((articles) => [newArticle, ...articles]);
   }, [newArticle]);
 
   const handleOpen = () => {
@@ -36,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Frontend Challenge</title>
+        <title>Savoir Faire | Hims</title>
       </Head>
       <Main>
         <HeroBanner />
@@ -45,9 +40,11 @@ export default function Home() {
         </CallToAction>
         <H1>Explore the Hims Journal</H1>
         <FilterOptions />
+
         {isOpen && (
           <Modal setIsOpen={setIsOpen} setNewArticle={setNewArticle} />
         )}
+
         {loading ? (
           <p>loading...</p>
         ) : error ? (
