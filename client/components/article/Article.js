@@ -2,8 +2,7 @@ import { useFetchImage } from "../../hooks/useFetchImage";
 import styled from "styled-components";
 
 export default function Article({ data }) {
-  const { imgUrl } = useFetchImage(data.url);
-
+  const imgUrl = useFetchImage(data);
   return (
     <Container>
       <ImgWrapper>
@@ -12,7 +11,9 @@ export default function Article({ data }) {
       <TextWrapper>
         <ArticleTitle>{data.title}</ArticleTitle>
         <ArticleDescription>{data.text}</ArticleDescription>
-        <ArticleLink>Read this Article</ArticleLink>
+        <ArticleLink href={data.url} target="_blank">
+          Read this ArRticle
+        </ArticleLink>
       </TextWrapper>
       <Line />
     </Container>

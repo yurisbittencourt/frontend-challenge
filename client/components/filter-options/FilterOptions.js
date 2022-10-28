@@ -4,7 +4,7 @@ import { useCheckIfFixed } from "../../hooks/useCheckScroll";
 
 export default function FilterOptions() {
   const [active, setActive] = useState("all");
-  const fixed = useCheckIfFixed(1060);
+  const { isFilterFixed } = useCheckIfFixed();
 
   const handleClick = (e) => {
     setActive((active) => e.target.id);
@@ -12,7 +12,7 @@ export default function FilterOptions() {
 
   return (
     <>
-      <Container fixed={!fixed}>
+      <Container fixed={isFilterFixed}>
         <FilterOption>
           <A
             id="everyday-health"

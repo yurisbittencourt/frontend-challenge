@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 
-export const useCheckIfFixed = (position) => {
-  const [fixed, setFixed] = useState(false);
+export const useCheckIfFixed = (position = 1060) => {
+  const [isNavFixed, setIsNavFixed] = useState(true);
+  const [isFilterFixed, setIsFilterFixed] = useState(false);
 
   const checkScrollPosition = () => {
-    if (window.scrollY <= position) setFixed((fixed) => true);
-    else setFixed((fixed) => false);
+    if (window.scrollY <= position) {
+      setIsNavFixed((fixed) => true);
+      setIsFilterFixed((fixed) => false);
+    } else {
+      setIsNavFixed((fixed) => false);
+      setIsFilterFixed((fixed) => true);
+    }
   };
 
   useEffect(() => {
@@ -16,5 +22,5 @@ export const useCheckIfFixed = (position) => {
     };
   }, []);
 
-  return fixed;
+  return { isNavFixed, isFilterFixed };
 };

@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useCheckIfFixed } from "../../hooks/useCheckScroll";
 
 export default function Navbar({ theme, toggleTheme }) {
-  const fixed = useCheckIfFixed(1060);
+  const { isNavFixed } = useCheckIfFixed();
 
   return (
     <header>
-      <Nav fixed={fixed}>
+      <Nav fixed={isNavFixed}>
         <NavLink href="/" aria-label="home">
           Hims
         </NavLink>

@@ -1,13 +1,20 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
 import Head from "next/head";
 import styled from "styled-components";
-import { Article, FilterOptions, HeroBanner } from "../components";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { Article, FilterOptions, HeroBanner, Modal } from "../components";
 import { useEffect, useState } from "react";
 import { GET_FIRST_ARTICLES, GET_PAGE_ARTICLES } from "./api/getArticles";
 import { Waypoint } from "react-waypoint";
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [newArticle, setNewArticle] = useState({
+    title: "",
+    description: "",
+    url: "",
+    imgUrl: "",
+  });
   const { data, loading, error } = useQuery(GET_FIRST_ARTICLES);
   const [getPageArticles, {}] = useLazyQuery(GET_PAGE_ARTICLES, {
     variables: { page: articles.length / 30 + 1 },
@@ -17,6 +24,15 @@ export default function Home() {
     data && setArticles(data.firstPageArticles);
   }, [data]);
 
+  useEffect(() => {
+    setArticles((articles) => [newArticle, ...articles]);
+  }, [newArticle]);
+
+  const handleOpen = () => {
+    document.body.style.overflow = "hidden";
+    setIsOpen(true);
+  };
+
   return (
     <>
       <Head>
@@ -25,10 +41,13 @@ export default function Home() {
       <Main>
         <HeroBanner />
         <CallToAction>
-          <A>Discover more about mens health</A>
+          <A onClick={() => handleOpen()}>Create a new article post</A>
         </CallToAction>
         <H1>Explore the Hims Journal</H1>
         <FilterOptions />
+        {isOpen && (
+          <Modal setIsOpen={setIsOpen} setNewArticle={setNewArticle} />
+        )}
         {loading ? (
           <p>loading...</p>
         ) : error ? (
@@ -99,4 +118,23 @@ const A = styled.a`
   color: ${({ theme }) => theme.colors.bannerLink};
   font-weight: 500;
   cursor: pointer;
+`;
+
+const CreateArticle = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  margin-top: 32px;
+  color: ${({ theme }) => theme.colors.filter};
+  &:hover {
+    color: ${({ theme }) => theme.colors.line};
+  }
 `;
