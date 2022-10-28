@@ -12,7 +12,7 @@ export default function Article({ data }) {
         <ArticleTitle>{data.title}</ArticleTitle>
         <ArticleDescription>{data.text}</ArticleDescription>
         <ArticleLink href={data.url} target="_blank">
-          Read this ArRticle
+          Read this Article
         </ArticleLink>
       </TextWrapper>
       <Line />
