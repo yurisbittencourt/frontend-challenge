@@ -26,7 +26,6 @@ app.get("/api/scrapper", (req, res) => {
   ogs(options)
     .then((data) => {
       const { error, result } = data;
-      console.log(result);
       const imgUrl = Array.isArray(result.ogImage)
         ? result.ogImage[0].url
         : result.ogImage.url;
