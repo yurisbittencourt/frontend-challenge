@@ -10,7 +10,7 @@ export default function Modal({ setIsOpen, setNewArticle }) {
   const handleSubmit = () => {
     setNewArticle({
       title: title,
-      description: description,
+      text: text,
       url: url,
       imgUrl: imgUrl,
     });
