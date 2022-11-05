@@ -1,6 +1,6 @@
 # frontend-challenge
 
-To start the development server run "npm run dev" after installing dependencies
+First install required dependencies with "npm install". Then, in the root directory run "npm run dev", the app will start at "http://localhost:3001/"
 
 - npm version: 8.13.2
 - node version: v16.13.2
